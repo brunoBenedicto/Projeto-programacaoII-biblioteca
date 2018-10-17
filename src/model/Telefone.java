@@ -1,16 +1,16 @@
 package model;
 
 public class Telefone {
-	private byte ddd;
+	private int ddd;
 	private int numero;
 
-	public Telefone(byte ddd, int numero) {
+	public Telefone(int ddd, int numero) {
 		super();
 		this.ddd = ddd;
 		this.numero = numero;
 	}
 
-	public byte getDdd() {
+	public int getDdd() {
 		return ddd;
 	}
 
