@@ -6,9 +6,7 @@ public class Cliente {
 	private boolean aptoAEmprestimos;
 	private Telefone telefone;
 
-	public Cliente(int idCliente, String nome, boolean aptoAEmprestimos, Telefone telefone) {
-		super();
-		this.idCliente = idCliente;
+	public Cliente(String nome, boolean aptoAEmprestimos, Telefone telefone) {
 		this.nome = nome;
 		this.aptoAEmprestimos = aptoAEmprestimos;
 		this.telefone = telefone;
@@ -32,6 +30,10 @@ public class Cliente {
 
 	public int getIdCliente() {
 		return idCliente;
+	}
+
+	public void setIdCliente(int id) {
+		this.idCliente = id;
 	}
 
 	public String getNome() {
