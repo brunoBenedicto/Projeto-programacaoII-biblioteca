@@ -1,21 +1,20 @@
-package repositorioArrayList;
+  package repositorioArrayList;
 
 import java.util.ArrayList;
 
+import interfaces.Ilivros;
 import model.Livro;
 
-public class RepositorioLivros {
+public class RepositorioLivros implements Ilivros {
 	private ArrayList<Livro> repositorio = new ArrayList<Livro>();
-	private static int idLivros;
+	
 	
 	public RepositorioLivros() {
-		RepositorioLivros.idLivros =0;
 	}
 	
 	public void adicionar(Livro livro) {
-		RepositorioLivros.idLivros = RepositorioLivros.idLivros +1;
-		livro.setIdLivro(RepositorioLivros.idLivros);
 		this.repositorio.add(livro);
+		
 	}
 	
 	public ArrayList<Livro> procurarPorAutor (String autor) {
@@ -45,11 +44,9 @@ public class RepositorioLivros {
 		return null;	
 	}
 	
-	public void disponivelParaEmprestimo(Livro livro) {
-		Livro l = this.procurar(livro.getIdLivro());
-		l.setDisponivel(livro.isDisponivel());
+	public void remover(Livro livro) {
+		if(this.repositorio.contains(livro))
+			this.repositorio.remove(livro);
 	}
-	
-	 
 
 }

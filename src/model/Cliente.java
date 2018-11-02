@@ -1,3 +1,4 @@
+
 package model;
 
 public class Cliente {
@@ -6,9 +7,8 @@ public class Cliente {
 	private boolean aptoAEmprestimos;
 	private Telefone telefone;
 
-	public Cliente(String nome, boolean aptoAEmprestimos, Telefone telefone) {
+	public Cliente(String nome, Telefone telefone) {
 		this.nome = nome;
-		this.aptoAEmprestimos = aptoAEmprestimos;
 		this.telefone = telefone;
 	}
 

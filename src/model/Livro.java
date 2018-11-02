@@ -4,7 +4,7 @@ import java.time.LocalDate;
 
 
 public class Livro {
-	
+	private static int contadorLivros;
 	private int idLivro;
 	private String nome;
 	private String autor;
@@ -16,6 +16,7 @@ public class Livro {
 		this.autor = autor;
 		this.dataDeLancamento = dataDeLancamento;
 		this.disponivel = disponivel;
+		this.idLivro = Livro.contadorLivros++;
 	}
 
 	public boolean isDisponivel() {

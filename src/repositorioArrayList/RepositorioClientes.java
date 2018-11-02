@@ -1,10 +1,12 @@
+
 package repositorioArrayList;
 
 import java.util.ArrayList;
 
+import interfaces.IClientes;
 import model.Cliente;
 
-public class RepositorioClientes {
+public class RepositorioClientes implements IClientes{
 	private static int idCliente;
 	private ArrayList<Cliente> clientes = new ArrayList<Cliente>();
 
@@ -12,7 +14,7 @@ public class RepositorioClientes {
 		RepositorioClientes.idCliente =0;
 	}
 
-	public boolean existe(Cliente cliente) {
+	private boolean existe(Cliente cliente) {
 		for (Cliente c : clientes) {
 			if (c.getNome() == cliente.getNome() && c.getTelefone().equals(cliente.getTelefone()))
 				return true;

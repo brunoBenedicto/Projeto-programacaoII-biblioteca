@@ -3,6 +3,7 @@ package model;
 import java.time.LocalDate;
 
 public class Devolucao {
+	private static final int MULTA_DIARIA = 1;
 	private LocalDate dataDevolucao;
 	private LocalDate dataPrevista;
 	private double valorMulta;
@@ -31,9 +32,9 @@ public class Devolucao {
 		return valorMulta;
 	}
 
-	public void setValorMulta(double valorMulta) {
-		this.valorMulta = valorMulta;
+	public void gerarMulta() {
+		long tempoDeAtraso = this.dataDevolucao.toEpochDay() - this.dataPrevista.toEpochDay();
+		double valorDaMulta = tempoDeAtraso * MULTA_DIARIA;
+		this.valorMulta =valorDaMulta;
 	}
-	
-
 }
