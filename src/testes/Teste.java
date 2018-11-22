@@ -1,5 +1,8 @@
 package testes;
 
+import controle.Fachada;
+import excecoes.ClienteJaAdicionadoExcepition;
+import excecoes.ClienteNaoEncontradoExcepition;
 import excecoes.DddInvalidoExcepiton;
 import excecoes.LivroNaoEncontradoException;
 import excecoes.NumeroInvalidoExcepiton;
@@ -17,23 +20,27 @@ import repositorioArrayList.RepositorioLivros;
 public class Teste {
 
 	public static void main(String[] args)  {
-		IClientes clientes = new RepositorioClientes();
-		Ilivros livros = new RepositorioLivros();
-		IEmprestimos emprestimos = new RepositorioEmprestimos();
-		Funcionario funcionario = new Atendente("atendente", null);
+		Fachada fachada = Fachada.getInstance();
 		Factory fabrica = new Factory();
-		Telefone tel;
-		
 		try {
-			tel = new Telefone(21, 2345678);
-		} catch (DddInvalidoExcepiton e1) {
+			fachada.adicionar(fabrica.novoCliente("bruno", fabrica.novoTelefone(81, 84367170)));
+		} catch (ClienteJaAdicionadoExcepition e) {
 			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		} catch (NumeroInvalidoExcepiton e1) {
+			e.printStackTrace();
+		} catch (DddInvalidoExcepiton e) {
 			// TODO Auto-generated catch block
-			e1.printStackTrace();
+			e.printStackTrace();
+		} catch (NumeroInvalidoExcepiton e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 		
+		try {
+			System.out.println(fachada.procurar("bruno").getNome()+" "+ fachada.procurar("bruno").getIdCliente());
+		} catch (ClienteNaoEncontradoExcepition e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	
 	}
 
