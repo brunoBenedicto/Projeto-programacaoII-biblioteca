@@ -2,6 +2,9 @@ package model;
 
 import java.time.LocalDate;
 
+import excecoes.DddInvalidoExcepiton;
+import excecoes.NumeroInvalidoExcepiton;
+
 public class Factory {
 	
 	public Cliente novoCliente(String nome, Telefone telefone) {
@@ -18,6 +21,9 @@ public class Factory {
 	
 	public Emprestimo novoEmprestimo(Livro livro1, Atendente atendente, Cliente cliente) {
 		return new Emprestimo( livro1, atendente, cliente);
+	}
+	public Telefone novoTelefone(int ddd, int numero) throws DddInvalidoExcepiton, NumeroInvalidoExcepiton {
+		return new Telefone(ddd, numero);
 	}
 
 }

@@ -3,6 +3,8 @@ package repositorioArrayList;
 
 import java.util.ArrayList;
 
+import excecoes.ClienteJaAdicionadoExcepition;
+import excecoes.ClienteNaoEncontradoExcepition;
 import interfaces.IClientes;
 import model.Cliente;
 
@@ -22,31 +24,33 @@ public class RepositorioClientes implements IClientes{
 		return false;
 	}
 
-	public void adicionar(Cliente cliente) {
+	public void adicionar(Cliente cliente) throws ClienteJaAdicionadoExcepition {
 		if(!existe(cliente)) {
 			RepositorioClientes.idCliente = RepositorioClientes.idCliente + 1;
 			cliente.setIdCliente(RepositorioClientes.idCliente);
 			this.clientes.add(cliente);
 		}
+		else
+			throw new ClienteJaAdicionadoExcepition(cliente.getNome());
 	}
 
-	public Cliente procurar(int id) {
+	public Cliente procurar(int id) throws ClienteNaoEncontradoExcepition {
 		for(Cliente c: clientes) {
 			if(c.getIdCliente() == id)
 				return c;
 		}
-		return null;
+		throw new ClienteNaoEncontradoExcepition();
 	}
 
-	public Cliente procurar(String nome) {
+	public Cliente procurar(String nome) throws ClienteNaoEncontradoExcepition {
 		for(Cliente c: clientes) {
 			if(c.getNome() == nome)
 				return c;
 		}
-		return null;
+		throw new ClienteNaoEncontradoExcepition(nome);
 	}
 
-	public void Atualizar(Cliente cliente) {
+	public void Atualizar(Cliente cliente) throws ClienteNaoEncontradoExcepition {
 		Cliente c = this.procurar(cliente.getIdCliente());
 		c.setAptoAEmprestimos(cliente.isAptoAEmprestimos());
 		c.setTelefone(cliente.getTelefone());

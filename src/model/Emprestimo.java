@@ -37,6 +37,7 @@ public class Emprestimo {
 		this.cliente = cliente;
 		this.dataInicio = LocalDate.now();
 		this.devolucao = new Devolucao(this.dataInicio.plusDays(PERIODO_DE_EMPRESTIMO));
+		this.idEmprestimo = Emprestimo.contadorEmprestimo++;
 		livro.setDisponivel(false);
 		cliente.setAptoAEmprestimos(false);
 
@@ -60,8 +61,9 @@ public class Emprestimo {
 
 	public void finalizarEmprestimo() {
 		this.devolucao.setDataDevolucao(LocalDate.now());
-		for (Livro l : this.livros) {
-			l.setDisponivel(true);
+		for (int i = 0; i < 2; i++) {
+			if (this.livros[i]!= null)
+				this.livros[i].setDisponivel(true);
 		}
 		cliente.setAptoAEmprestimos(true);
 
@@ -71,5 +73,4 @@ public class Emprestimo {
 
 	}
 
-	
 }
