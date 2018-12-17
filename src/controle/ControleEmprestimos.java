@@ -2,9 +2,12 @@ package controle;
 
 import java.util.ArrayList;
 
+import excecoes.ClienteNaoApitoParaEmprestimos;
 import excecoes.EmprestimoNaoEncontradoExcepition;
+import excecoes.SemClientesEmAtrasoExcepition;
 import excecoes.SemHistoricoDeEmprestimosExcepition;
 import interfaces.IEmprestimos;
+import model.Cliente;
 import model.Emprestimo;
 import repositorioArrayList.RepositorioEmprestimos;
 
@@ -12,7 +15,7 @@ public class ControleEmprestimos {
 	
 	private IEmprestimos emprestimos = new RepositorioEmprestimos();
 	
-	public void adicionar(Emprestimo emprestimo) {
+	public void adicionar(Emprestimo emprestimo) throws ClienteNaoApitoParaEmprestimos {
 		this.emprestimos.adicionar(emprestimo);
 	}
 	
@@ -40,5 +43,7 @@ public class ControleEmprestimos {
 		return this.emprestimos.pesquizarPorTitulo(titulo);
 	}
 
-
+	public ArrayList<Cliente> pesquizarAtrasados() throws SemClientesEmAtrasoExcepition{
+		return this.emprestimos.pesquizarAtrasados();
+	}
 }

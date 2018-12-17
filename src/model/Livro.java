@@ -1,17 +1,15 @@
 package model;
 
-import java.time.LocalDate;
-
 
 public class Livro {
 	private static int contadorLivros;
 	private int idLivro;
 	private String nome;
 	private String autor;
-	private LocalDate dataDeLancamento;
+	private int dataDeLancamento;
 	private boolean disponivel;
 
-	public Livro(String nome, String autor, LocalDate dataDeLancamento, boolean disponivel) {
+	public Livro(String nome, String autor, int dataDeLancamento, boolean disponivel) {
 		this.nome = nome;
 		this.autor = autor;
 		this.dataDeLancamento = dataDeLancamento;
@@ -35,7 +33,7 @@ public class Livro {
 		return autor;
 	}
 
-	public LocalDate getDataDeLancamento() {
+	public int getDataDeLancamento() {
 		return dataDeLancamento;
 	}
 

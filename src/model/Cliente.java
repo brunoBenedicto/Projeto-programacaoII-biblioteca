@@ -10,6 +10,7 @@ public class Cliente {
 	public Cliente(String nome, Telefone telefone) {
 		this.nome = nome;
 		this.telefone = telefone;
+		this.aptoAEmprestimos = true;
 	}
 
 	public boolean isAptoAEmprestimos() {

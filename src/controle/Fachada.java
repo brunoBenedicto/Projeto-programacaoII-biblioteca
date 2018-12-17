@@ -2,12 +2,12 @@ package controle;
 
 import java.util.ArrayList;
 
-import com.sun.javafx.scene.control.skin.EmbeddedTextContextMenuContent;
-
 import excecoes.ClienteJaAdicionadoExcepition;
+import excecoes.ClienteNaoApitoParaEmprestimos;
 import excecoes.ClienteNaoEncontradoExcepition;
 import excecoes.EmprestimoNaoEncontradoExcepition;
 import excecoes.LivroNaoEncontradoException;
+import excecoes.SemClientesEmAtrasoExcepition;
 import excecoes.SemHistoricoDeEmprestimosExcepition;
 import model.Cliente;
 import model.Emprestimo;
@@ -38,11 +38,11 @@ public class Fachada {
 		this.clientes.adicionar(cliente);
 	}
 
-	public Cliente procurarCliente(int id) throws ClienteNaoEncontradoExcepition {
+	public Cliente pesquisarCliente(int id) throws ClienteNaoEncontradoExcepition {
 		return this.clientes.procurar(id);
 	}
 
-	public Cliente procurar(String nome) throws ClienteNaoEncontradoExcepition {
+	public Cliente pesquisarCliente(String nome) throws ClienteNaoEncontradoExcepition {
 		return this.clientes.procurar(nome);
 	}
 
@@ -55,11 +55,11 @@ public class Fachada {
 	 * emprestimos
 	 */
 	// emprestimos
-public void adicionar(Emprestimo emprestimo) {
+public void adicionar(Emprestimo emprestimo) throws ClienteNaoApitoParaEmprestimos {
 		this.emprestimos.adicionar(emprestimo);
 	}
 
-	public Emprestimo pesquisar(int idEmprestimo) throws EmprestimoNaoEncontradoExcepition {
+	public Emprestimo pesquisarEmprestimo(int idEmprestimo) throws EmprestimoNaoEncontradoExcepition {
 		return this.emprestimos.pesquisar(idEmprestimo);
 	}
 
@@ -71,16 +71,19 @@ public void adicionar(Emprestimo emprestimo) {
 		this.emprestimos.finalizar(emprestimo);
 	}
 
-	public ArrayList<Emprestimo> pesquizarPorCliente(int idCliente) throws SemHistoricoDeEmprestimosExcepition {
+	public ArrayList<Emprestimo> pesquizarEmprestimoPorCliente(int idCliente) throws SemHistoricoDeEmprestimosExcepition {
 		return this.emprestimos.pesquizarPorCliente(idCliente);
 	}
 
-	public ArrayList<Emprestimo> pesquizarPorAutor(String nome) throws SemHistoricoDeEmprestimosExcepition {
+	public ArrayList<Emprestimo> pesquizarEmprestimoPorAutor(String nome) throws SemHistoricoDeEmprestimosExcepition {
 		return this.emprestimos.pesquizarPorAutor(nome);
 	}
 
-	public ArrayList<Emprestimo> pesquizarPorTitulo(String titulo) throws SemHistoricoDeEmprestimosExcepition {
+	public ArrayList<Emprestimo> pesquizarEmprestimoPorTitulo(String titulo) throws SemHistoricoDeEmprestimosExcepition {
 		return this.emprestimos.pesquizarPorTitulo(titulo);
+	}
+	public ArrayList<Cliente> pesquizarEmprestimosAtrasados() throws SemClientesEmAtrasoExcepition{
+		return this.emprestimos.pesquizarAtrasados();
 	}
 
 	/*
@@ -92,15 +95,15 @@ public void adicionar(Livro livro) {
 		this.livros.adicionar(livro);
 	}
 
-	public ArrayList<Livro> procurarPorAutor(String autor) {
+	public ArrayList<Livro> pesquisarLivroPorAutor(String autor) {
 		return this.livros.procurarPorAutor(autor);
 	}
 
-	public ArrayList<Livro> procurarPorTitulo(String titulo) {
+	public ArrayList<Livro> pesquiarLivroPorTitulo(String titulo) {
 		return this.livros.procurarPorTitulo(titulo);
 	}
 
-	public Livro procurarLivro(int id) throws LivroNaoEncontradoException {
+	public Livro pesquisarLivro(int id) throws LivroNaoEncontradoException {
 		return this.livros.procurar(id);
 	}
 

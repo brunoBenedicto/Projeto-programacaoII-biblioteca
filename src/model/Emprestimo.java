@@ -22,9 +22,7 @@ public class Emprestimo {
 		this.dataInicio = LocalDate.now();
 		this.idEmprestimo = Emprestimo.contadorEmprestimo++;
 		this.devolucao = new Devolucao(this.dataInicio.plusDays(PERIODO_DE_EMPRESTIMO));
-		livro1.setDisponivel(false);
-		livro2.setDisponivel(false);
-		cliente.setAptoAEmprestimos(false);
+		
 	}
 
 	public int getIdEmprestimo() {
@@ -38,8 +36,6 @@ public class Emprestimo {
 		this.dataInicio = LocalDate.now();
 		this.devolucao = new Devolucao(this.dataInicio.plusDays(PERIODO_DE_EMPRESTIMO));
 		this.idEmprestimo = Emprestimo.contadorEmprestimo++;
-		livro.setDisponivel(false);
-		cliente.setAptoAEmprestimos(false);
 
 	}
 
@@ -60,17 +56,24 @@ public class Emprestimo {
 	}
 
 	public void finalizarEmprestimo() {
-		this.devolucao.setDataDevolucao(LocalDate.now());
+		this.getDevolucao().setDataDevolucao(LocalDate.now());
 		for (int i = 0; i < 2; i++) {
 			if (this.livros[i]!= null)
 				this.livros[i].setDisponivel(true);
 		}
 		cliente.setAptoAEmprestimos(true);
 
-		if (this.devolucao.getDataPrevista().isAfter(this.devolucao.getDataDevolucao())) {
-			this.devolucao.gerarMulta();
+		if (this.getDevolucao().getDataPrevista().isAfter(this.getDevolucao().getDataDevolucao())) {
+			this.getDevolucao().gerarMulta();
 		}
 
 	}
+
+
+	public Devolucao getDevolucao() {
+		return devolucao;
+	}
+
+	
 
 }
