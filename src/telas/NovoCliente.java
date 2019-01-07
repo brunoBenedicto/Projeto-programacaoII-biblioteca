@@ -15,6 +15,8 @@ import excecoes.NumeroInvalidoExcepiton;
 import model.Telefone;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import javax.swing.SwingConstants;
 import javax.swing.JTextField;
@@ -49,7 +51,7 @@ public class NovoCliente extends JFrame {
 	 * Create the frame.
 	 */
 	public NovoCliente() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 317, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -90,17 +92,23 @@ public class NovoCliente extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				try {
 					Fachada.getInstance().adicionar(Factory.getInstance().novoCliente(txtNome.getText(), Factory.getInstance().novoTelefone(Integer.parseInt(txtDdd.getText()), Integer.parseInt(txtNumero.getText())) ));
+					JOptionPane.showMessageDialog(null, "adicionado");
+					dispose();
 				} catch (NumberFormatException e) {
 					// TODO Auto-generated catch block
+					JOptionPane.showMessageDialog(null,e.getMessage());
 					e.printStackTrace();
 				} catch (ClienteJaAdicionadoExcepition e) {
 					// TODO Auto-generated catch block
+					JOptionPane.showMessageDialog(null,e.getMessage());
 					e.printStackTrace();
 				} catch (DddInvalidoExcepiton e) {
 					// TODO Auto-generated catch block
+					JOptionPane.showMessageDialog(null,e.getMessage());
 					e.printStackTrace();
 				} catch (NumeroInvalidoExcepiton e) {
 					// TODO Auto-generated catch block
+					JOptionPane.showMessageDialog(null,e.getMessage());
 					e.printStackTrace();
 				}
 		

@@ -16,7 +16,7 @@ public class Emprestimo {
 	public Emprestimo(Livro livro1, Livro livro2, Atendente atendente, Cliente cliente) {
 
 		this.livros[0] = livro1;
-		this.livros[1] = livro1;
+		this.livros[1] = livro2;
 		this.atendente = atendente;
 		this.cliente = cliente;
 		this.dataInicio = LocalDate.now();

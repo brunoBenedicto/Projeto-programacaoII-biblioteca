@@ -1,5 +1,7 @@
 package controle;
 
+import java.util.ArrayList;
+
 import excecoes.ClienteJaAdicionadoExcepition;
 import excecoes.ClienteNaoEncontradoExcepition;
 import interfaces.IClientes;
@@ -20,7 +22,7 @@ public class ControleClientes {
 		return this.clientes.procurar(id);
 	}
 
-	public Cliente procurar(String nome) throws ClienteNaoEncontradoExcepition {
+	public ArrayList<Cliente> procurar(String nome) {
 		return this.clientes.procurar(nome);
 	}
 

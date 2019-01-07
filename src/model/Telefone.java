@@ -32,8 +32,14 @@ public class Telefone {
 		String s = Integer.toString(numero);
 		if (s.length() == 8)
 			this.numero = numero;
-		else
+		else if (s.length() == 9 && s.startsWith("9")) {
+			this.numero = numero;
+		} else
 			throw new NumeroInvalidoExcepiton();
+	}
+
+	public String toString() {
+		return "(" + this.getDdd() + ") " + this.getNumero();
 	}
 
 }

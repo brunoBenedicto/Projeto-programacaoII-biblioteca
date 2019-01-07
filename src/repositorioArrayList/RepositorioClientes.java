@@ -42,12 +42,13 @@ public class RepositorioClientes implements IClientes{
 		throw new ClienteNaoEncontradoExcepition();
 	}
 
-	public Cliente procurar(String nome) throws ClienteNaoEncontradoExcepition {
+	public ArrayList<Cliente> procurar(String nome) {
+		ArrayList<Cliente> lista = new ArrayList<Cliente>();
 		for(Cliente c: clientes) {
-			if(c.getNome() == nome)
-				return c;
+			if(c.getNome().contains(nome))
+				lista.add(c);
 		}
-		throw new ClienteNaoEncontradoExcepition(nome);
+			return lista;
 	}
 
 	public void Atualizar(Cliente cliente) throws ClienteNaoEncontradoExcepition {

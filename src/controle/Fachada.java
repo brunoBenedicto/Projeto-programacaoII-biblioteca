@@ -6,6 +6,7 @@ import excecoes.ClienteJaAdicionadoExcepition;
 import excecoes.ClienteNaoApitoParaEmprestimos;
 import excecoes.ClienteNaoEncontradoExcepition;
 import excecoes.EmprestimoNaoEncontradoExcepition;
+import excecoes.LivriNaoDisponivelExcepition;
 import excecoes.LivroNaoEncontradoException;
 import excecoes.SemClientesEmAtrasoExcepition;
 import excecoes.SemHistoricoDeEmprestimosExcepition;
@@ -42,7 +43,7 @@ public class Fachada {
 		return this.clientes.procurar(id);
 	}
 
-	public Cliente pesquisarCliente(String nome) throws ClienteNaoEncontradoExcepition {
+	public ArrayList<Cliente> pesquisarCliente(String nome) {
 		return this.clientes.procurar(nome);
 	}
 
@@ -55,7 +56,7 @@ public class Fachada {
 	 * emprestimos
 	 */
 	// emprestimos
-public void adicionar(Emprestimo emprestimo) throws ClienteNaoApitoParaEmprestimos {
+public void adicionar(Emprestimo emprestimo) throws ClienteNaoApitoParaEmprestimos, LivriNaoDisponivelExcepition {
 		this.emprestimos.adicionar(emprestimo);
 	}
 
@@ -82,8 +83,11 @@ public void adicionar(Emprestimo emprestimo) throws ClienteNaoApitoParaEmprestim
 	public ArrayList<Emprestimo> pesquizarEmprestimoPorTitulo(String titulo) throws SemHistoricoDeEmprestimosExcepition {
 		return this.emprestimos.pesquizarPorTitulo(titulo);
 	}
-	public ArrayList<Cliente> pesquizarEmprestimosAtrasados() throws SemClientesEmAtrasoExcepition{
-		return this.emprestimos.pesquizarAtrasados();
+	public ArrayList<Emprestimo> pesquizarEmprestimosAtrasados() throws SemClientesEmAtrasoExcepition{
+		return this.emprestimos.pesquisarAtrasados();
+	}
+	public ArrayList<Emprestimo> getEmprestimos(){
+		return this.emprestimos.getEmprestimos();
 	}
 
 	/*
@@ -99,7 +103,7 @@ public void adicionar(Livro livro) {
 		return this.livros.procurarPorAutor(autor);
 	}
 
-	public ArrayList<Livro> pesquiarLivroPorTitulo(String titulo) {
+	public ArrayList<Livro> pesquisarLivroPorTitulo(String titulo) {
 		return this.livros.procurarPorTitulo(titulo);
 	}
 

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import excecoes.ClienteNaoApitoParaEmprestimos;
 import excecoes.EmprestimoNaoEncontradoExcepition;
+import excecoes.LivriNaoDisponivelExcepition;
 import excecoes.SemClientesEmAtrasoExcepition;
 import excecoes.SemHistoricoDeEmprestimosExcepition;
 import interfaces.IEmprestimos;
@@ -15,7 +16,7 @@ public class ControleEmprestimos {
 	
 	private IEmprestimos emprestimos = new RepositorioEmprestimos();
 	
-	public void adicionar(Emprestimo emprestimo) throws ClienteNaoApitoParaEmprestimos {
+	public void adicionar(Emprestimo emprestimo) throws ClienteNaoApitoParaEmprestimos, LivriNaoDisponivelExcepition {
 		this.emprestimos.adicionar(emprestimo);
 	}
 	
@@ -32,18 +33,21 @@ public class ControleEmprestimos {
 	}
 	
 	public ArrayList<Emprestimo> pesquizarPorCliente(int idCliente) throws SemHistoricoDeEmprestimosExcepition{
-		return this.emprestimos.pesquizarPorCliente(idCliente);
+		return this.emprestimos.pesquisarPorCliente(idCliente);
 	}
 	
 	public ArrayList<Emprestimo> pesquizarPorAutor(String nome) throws SemHistoricoDeEmprestimosExcepition{
-		return this.emprestimos.pesquizarPorAutor(nome);
+		return this.emprestimos.pesquisarPorAutor(nome);
 	}
 	
 	public ArrayList<Emprestimo> pesquizarPorTitulo(String titulo) throws SemHistoricoDeEmprestimosExcepition{
-		return this.emprestimos.pesquizarPorTitulo(titulo);
+		return this.emprestimos.pesquisarPorTitulo(titulo);
 	}
 
-	public ArrayList<Cliente> pesquizarAtrasados() throws SemClientesEmAtrasoExcepition{
-		return this.emprestimos.pesquizarAtrasados();
+	public ArrayList<Emprestimo> pesquisarAtrasados() throws SemClientesEmAtrasoExcepition{
+		return this.emprestimos.pesquisarAtrasados();
+	}
+	public ArrayList<Emprestimo> getEmprestimos(){
+		return this.emprestimos.getEmprestimo();
 	}
 }
